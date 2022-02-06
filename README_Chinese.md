@@ -1,6 +1,6 @@
 ## Overview
 
-这个文档是MIT596课程期末测试
+这个文档是MIT596操作系统课程期末测试
 
 [中文说明](./README_Chinese.md) [English Doc](./README.md)
 
