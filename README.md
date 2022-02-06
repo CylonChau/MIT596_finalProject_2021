@@ -1,6 +1,6 @@
 ## Overview
 
-this doc is  final exam in TUP MIT596
+this doc is  final exam in TUP MIT596(operating system)
 
 [中文说明](./README_Chinese.md) [English Doc](./README.md)
 
