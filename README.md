@@ -2,7 +2,9 @@
 
 this doc is  final exam in TUP MIT596
 
-## Project Overview 
+[中文说明](./README_Chinese.md) [English Doc](./README.md)
+
+## Project Overview
 
 ### 1.CPU Scheduling algorithms (choose 1 non preemptive; 1 preemptive); 
 
