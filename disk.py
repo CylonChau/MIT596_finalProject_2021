@@ -5,7 +5,7 @@ import sys
 
 from prettytable  import PrettyTable
 
-SCAN_DIRECTION = 1                    # 1表示向磁道号增加的方向扫描，0表示向磁道号减小的方向
+SCAN_DIRECTION = 1  
 LOOK_DIRECTION = 1
 TRACK_MAX_COUNT = 0
 TRACK_START = 0

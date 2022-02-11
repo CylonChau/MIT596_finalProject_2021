@@ -113,12 +113,12 @@ def FCFS():
             pcb[i][7] = pcb[i][4] - pcb[i][1] # end - ArrivalTime
  
         i += 1
-    #计算周转、带权周转时间
+    # coupute RT
     for i in range(n):
         pcb[i][5] = float(pcb[i][4] - int(pcb[i][1]))
         pcb[i][6] = float(pcb[i][5] / int(pcb[i][2]))
         i += 1
-    #计算平均周转时间和平均带权周转时间
+    
     SzzTime = 0
     SdqzzTime = 0
     for i in range(n):
@@ -126,7 +126,7 @@ def FCFS():
         SdqzzTime = float(SdqzzTime + float(pcb[i][6]))
         AzzTime = float(SzzTime / n)
         AdqzzTime = float(SdqzzTime / n)
-    #输出结果，按照开始时间进行排序
+    
     pcb.sort(key = lambda x:x[3], reverse = False)
     
     print("FCFS Table is:")
@@ -190,14 +190,13 @@ def SJF():
     sjf_pcb = pcb
     i = 1
     k = 0
-    # 对列表按照到达时间进行升序排序  x:x[1]为依照到达时间进行排序
+    
     sjf_pcb.sort(key = lambda x: x[1], reverse = False)
 
 
     
 
- 
-    #定义列表的第一项内容
+
     # the col.1 name is " Process name AT BT S E RT WT TT 
     startTime0 = int(sjf_pcb[0][1]) # arrive time
     sjf_pcb[0][3] = startTime0 # start
@@ -206,19 +205,18 @@ def SJF():
     sjf_pcb[0][6] = sjf_pcb[0][3] - sjf_pcb[0][1] # wt startTime - ArrivalTime
     sjf_pcb[0][7] = sjf_pcb[0][4] - sjf_pcb[0][1] # tt end - ArrivalTime
  
-    # 对后背队列按照服务时间排序
+
     # sort qune
-    temp_pcb = sjf_pcb[1:len(sjf_pcb)]   #切片 临时存放后备队列  len(sjf_pcb)获取长度
+    temp_pcb = sjf_pcb[1:len(sjf_pcb)] 
     temp_pcb.sort(key=lambda x: x[2], reverse=False)
     sjf_pcb[1:len(sjf_pcb)] = temp_pcb
- 
-    #进行计算
+
   
     while(i < n):
         h = 1
-        # 比较到达时间和前一者的完成时间，判断是否需要进行重新排序
+        
         while(int(sjf_pcb[i][1]) >= int(sjf_pcb[i - 1][4])):
-            if(i == n-1):    #当最后一个进程的到达时间大于前一个进程的完成时间
+            if(i == n-1):   
                 startTime = sjf_pcb[i][1]
                 sjf_pcb[i][3] = startTime # s start
                 sjf_pcb[i][4] = startTime + int(sjf_pcb[i][2]) # end start+bt
@@ -226,9 +224,9 @@ def SJF():
                 sjf_pcb[i][6] = sjf_pcb[i][3] - sjf_pcb[i][1] # wt startTime - ArrivalTime
                 sjf_pcb[i][7] = sjf_pcb[i][4] - sjf_pcb[i][1] # tt end - ArrivalTime
 
-                k = 1      #设置参数对比，避免一重循环之后再对末尾进程重新计算
+                k = 1      
                 break
-            else:      #对进程顺序进行调换
+            else:      
                 temp_sjf_pcb = sjf_pcb[i]
                 sjf_pcb[i] = sjf_pcb[i + h]
                 sjf_pcb[i + h] = temp_sjf_pcb
