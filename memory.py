@@ -164,7 +164,9 @@ class main:
 
 
 if __name__ == "__main__":
-    M = int(input("Please input Page number："))
+    M = input("Please input Page number default 3: ")
+    M = int(M) if M.isdigit() else 3
+
     if M < 3 or M > 5:
         print("Page number is minimum of 3 frames maximum of 5 frames.")
         sys.exit()

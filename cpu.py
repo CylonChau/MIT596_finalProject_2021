@@ -4,28 +4,43 @@ import sys
 from prettytable  import PrettyTable
 from colorama import init, Fore, Back, Style
 
-# color = [
-#     Fore.LIGHTGREEN_EX + s + Fore.RESET,
-
-# ]
 
 # output color
 
 class Colored(object):
-    
+
     def c0(self, s):
-        return Back.RED + s + Back.RESET
+        return Back.LIGHTGREEN_EX + s + Back.RESET
+
     def c1(self, s):
         return Back.GREEN + s + Back.RESET
+
     def c2(self, s):
         return Back.YELLOW + s + Back.RESET
-    def c3(self,s):
-        return Back.LIGHTGREEN + s + Back.RESET
-    def c4(self,s):
-        return Back.BLACK + s + Back.RESET
-    def cx(self,s):
-        return Back.BLUE + s + Back.RESET
 
+    def c3(self, s):
+        return Back.CYAN + s + Back.RESET
+
+    def c4(self, s):
+        return Back.LIGHTCYAN_EX + s + Back.RESET
+
+    def c5(self, s):
+        return Back.MAGENTA + s + Back.RESET
+
+    def c6(self, s):
+        return Back.LIGHTRED_EX + s + Back.RESET
+
+    def c7(self, s):
+        return Back.LIGHTYELLOW_EX + s + Back.RESET
+
+    def c8(self, s):
+        return Back.LIGHTMAGENTA_EX + s + Back.RESET
+
+    def cb(self, s):
+        return Back.BLACK + s + Back.RESET
+
+    def cx(self, s):
+        return Back.BLUE + s + Back.RESET
 
 
 # input function
@@ -33,10 +48,12 @@ def inPcb():
     i = 0
     while(i < n):
         print("**************************************")
-        pName = input("Please input No.%d Process Name：" % (i+1))
-        arriveTime = int(input("Please input Brust Time:"))
-        burstTime = int(input("Please input Service Time:"))
-
+        pName = input("Please input No.%d Process Name default Process %d: " % (i+1, i+1))
+        pName = str(pName) if pName.isalpha() else "process %d" % (i+1)
+        arriveTime = input("Please input Arrive Time default %d: " % (i+1))
+        arriveTime = int(arriveTime) if arriveTime.isdigit() else i+1
+        burstTime = input("Please input Brust Time default %d: "% (i+1))
+        burstTime = int(burstTime) if burstTime.isdigit() else i+1
 
         """
         the col name is " Process name AT BT S E RT WT TT "
@@ -112,7 +129,7 @@ def FCFS():
     #输出结果，按照开始时间进行排序
     pcb.sort(key = lambda x:x[3], reverse = False)
     
-    print("Table is:")
+    print("FCFS Table is:")
     for i  in range(n):
 
         # the col name is " Process name AT BT S E RT WT TT "
@@ -152,11 +169,11 @@ def FCFS():
             if(j>=pcb[i][3] and j <=pcb[i][4]):
                 col.append(eval(func)("  "))
             else:
-                col.append(color.c4("  "))
+                col.append(color.cb("  "))
 
         gctable.add_row(col)
   
-    print("Table is:")
+    print("FCFS Table is:")
     print(gctable)
 
  
@@ -248,14 +265,10 @@ def SJF():
  
             i += 1
     
-
-
-
-    
     sjf_pcb.sort(key=lambda x: x[3], reverse=False)
 
 
-    print("SJF Table is:")
+    print("\nSJF Table is:")
     for i  in range(n):
 
         # the col name is " Process name AT BT S E RT WT TT "
@@ -293,19 +306,18 @@ def SJF():
             if(j>=sjf_pcb[i][3] and j <=sjf_pcb[i][4]):
                 col.append(eval(func)("  "))
             else:
-                col.append(color.c4("  "))
-
+                col.append(color.cb("  "))
         gctable.add_row(col)
-  
+    
     print("SJF Gantt Chart is:")
     print(gctable)
  
  
 # main processing
 if __name__ == '__main__':
-
         pcb = []
-        n = int(input("Please input Process number："))
+        n = input("Please input Process number default 3: ")
+        n = int(n) if n.isdigit() else 3
 
         if n < 3 or n > 6:
             print("min of 3 processes and maximum 6 processes.")
@@ -315,7 +327,8 @@ if __name__ == '__main__':
         print("Please select algorithms: \n 1. FCFS \n 2. SJF :\n")
         m = 1
         while(m == 1):
-            option = int(input("Please select algorithms:(input 1 or 2 to select，other key exit):"))
+            option = input("Please select algorithms:(input 1 or 2 to select，other key exit): ")
+            option = int(option) if option.isdigit() else 0
             if(option == 1):
                 FCFS()
             elif(option == 2):
