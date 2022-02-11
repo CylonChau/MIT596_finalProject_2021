@@ -345,9 +345,9 @@ def initQueue(num):
 
 if __name__ == '__main__':
 
-    TRACK_REQUEST_COUNT = input("Please input tracks number: ")       
-    TRACK_MAX_COUNT = input("Please input tracks range: ")
-    TRACK_START = input("Please input tracks start postion: ")
+    TRACK_REQUEST_COUNT = input("Please input tracks number default 12: ")       
+    TRACK_MAX_COUNT = input("Please input tracks range default 100: ")
+    TRACK_START = input("Please input tracks start postion default 50: ")
 
     TRACK_REQUEST_COUNT = int(TRACK_REQUEST_COUNT) if TRACK_REQUEST_COUNT.isdigit() else 12
     TRACK_MAX_COUNT = int(TRACK_MAX_COUNT) if TRACK_MAX_COUNT.isdigit() else 100
